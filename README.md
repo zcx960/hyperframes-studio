@@ -9,6 +9,7 @@
     <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square" alt="TypeScript 5" />
     <img src="https://img.shields.io/badge/API-OpenAI--compatible%20%7C%20Anthropic--compatible-3a7f52?style=flat-square" alt="API support" />
     <img src="https://img.shields.io/badge/Render-HyperFrames-c9a227?style=flat-square" alt="HyperFrames" />
+    <img src="https://img.shields.io/badge/License-0BSD-c9a227?style=flat-square" alt="0BSD License" />
   </p>
 
   <p><a href="./README.en.md">English</a> | <strong>中文</strong></p>
@@ -227,4 +228,4 @@ pnpm build
 
 ## 许可证
 
-本项目暂未添加开源许可证。公开复用、二次分发或接受外部贡献前，建议先补充 `LICENSE` 文件。
+本项目基于 [0BSD License](./LICENSE) 开源。这是非常宽松的开源许可，允许出于任何目的使用、复制、修改和分发代码，不要求保留版权声明。
