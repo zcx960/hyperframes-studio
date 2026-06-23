@@ -1,0 +1,38 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 8787
+      SETTINGS_PATH: /data/settings.json
+      USER_PASSWORD: ${USER_PASSWORD:-change-me-user}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-change-me-admin}
+      AUTH_SECRET: ${AUTH_SECRET:-change-me-auth-secret}
+      HF_RENDER_WORKERS: ${HF_RENDER_WORKERS:-1}
+      HF_IMAGE_CONCURRENCY: ${HF_IMAGE_CONCURRENCY:-4}
+    volumes:
+      - studio-data:/data
+    # Headless Chrome (render) needs more shared memory than the 64MB default.
+    shm_size: "1gb"
+    ports:
+      - "8787:8787"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8787/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8980:80"
+
+volumes:
+  studio-data:

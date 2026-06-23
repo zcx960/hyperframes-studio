@@ -1,0 +1,19 @@
+{
+  "name": "hyperframes-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n api,web -c green,blue \"pnpm --filter @hyperframes-studio/api dev\" \"pnpm --filter @hyperframes-studio/web dev\"",
+    "build": "pnpm --filter @hyperframes-studio/api build && pnpm --filter @hyperframes-studio/web build",
+    "typecheck": "pnpm --filter @hyperframes-studio/api typecheck && pnpm --filter @hyperframes-studio/web typecheck",
+    "test": "pnpm --filter @hyperframes-studio/api test && pnpm --filter @hyperframes-studio/web test",
+    "lint": "biome check ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "concurrently": "^9.2.1",
+    "playwright": "^1.61.0",
+    "typescript": "^5.9.2"
+  },
+  "packageManager": "pnpm@10.14.0"
+}
